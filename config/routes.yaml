@@ -1,0 +1,48 @@
+index:
+  path: /template
+
+  controller: App\Controller\TemplateController::index
+add_to_order:
+  path: /add-to-order
+  controller: App\Controller\OrdersController::addToOrder
+  methods: ["POST"]
+app_orders_checkout_updated:
+  path: "/orders/checkout/{updated}"
+  controller: 'App\Controller\OrdersController::checkoutUpdated'
+  methods: ["GET", "POST"]
+  requirements:
+    updated: "true|false" # Valid values for the 'updated' parameter
+
+# Define a route without the 'updated' parameter
+app_orders_checkout_normal:
+  path: "/orders/checkout"
+  controller: 'App\Controller\OrdersController::checkoutNormal'
+  methods: ["GET", "POST"]
+
+update_orders_status_route:
+  path: '/update_orders_status'
+  controller: 'App\Controller\OrdersController::updateOrdersStatus'
+  methods: ['POST','GET']
+search:
+  resource: App\Controller\ServiceController
+  type: annotation
+statistics_show:
+  path: /statistics
+  controller: App\Controller\StatisticController::showStatistics
+reservation_reserve:
+  path: /reservation
+  controller: App\Controller\ReservationController::reserve
+  methods: GET
+app_payment_success:
+  path: /payment/success
+  controller: App\Controller\PaymentController::success
+
+app_payment_failure:
+  path: /payment/failure
+  controller: App\Controller\PaymentController::failure
+app_photos_gallery:
+  path: /photos-gallery
+  controller: App\Controller\PhotosController::gallery
+generate_pdf:
+  path: '/pdf/generate/{ticketId}'
+  controller: 'App\Controller\PaymentController::generatePdf'
